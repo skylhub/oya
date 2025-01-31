@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhang | Great | Sofas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@200;400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Space Grotesk', 'Libre Franklin', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.0;
+        }
+
+        header {
+            color: #000;
+            padding: 5px;
+            text-align: center;
+        }
+
+       /* Menu Styles */
+        nav {
+            background: linear-gradient(115deg, #ccc, #666);
+            padding: 1px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li {
+            position: relative;
+        }
+
+        .menu a {
+            color: #fff;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-weight: 10;
+            transition: all 0.2s ease;
+            display: block;
+            border-radius: 5px; /* Optional: Adds rounded corners */
+        }
+
+        .menu a:hover {
+            background: white; /* Background turns white on hover */
+            color: #444; /* Text color changes to the gradient background color */
+        }
+
+        .menu .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #444;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: 150px;
+            border-radius: 2px; /* Optional: Adds rounded corners */
+        }
+
+        .menu .submenu a {
+            padding: 10px;
+        }
+
+        .menu li:hover .submenu {
+            display: block;
+        }
+
+        /* Burger Menu Styles */
+        .menu-toggle {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive Menu */
+        @media (max-width: 800px) {
+            .menu {
+                display: none; /* Hide the regular menu */
+                flex-direction: column;
+                background: #444;
+                position: absolute;
+                top: 60px; /* Adjust based on header height */
+                left: 0;
+                width: 100%;
+            }
+
+            .menu.active {
+                display: flex; /* Show the menu when active */
+            }
+
+            .menu-toggle {
+                display: flex; /* Always show the burger menu on smaller screens */
+            }
+
+            .menu li {
+                text-align: center;
+            }
+
+            .menu .submenu {
+                position: static;
+                background: #555;
+            }
+
+            /* Remove the scrolled class behavior for mobile */
+            .scrolled .menu {
+                display: none;
+            }
+
+            .scrolled .menu-toggle {
+                display: flex;
+            }
+
+            .scrolled .menu.active {
+                display: flex;
+            }
+        }
+
+        /* Parallax Sections */
+        .parallax {
+            height: 100vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        #parallax1 {
+            background-image: url('img/sofa000.webp'); /* Replace with your image */
+        }
+
+        #parallax2 {
+            background-image: url('img/002_sofa.webp'); /* Replace with your image */
+        }
+
+        #parallax3 {
+            background-image: url('img/0003_Sofa.webp'); /* Replace with your image */
+        }
+
+        #parallax4 {
+            background-image: url('img/mono0101.webp'); /* New gallery parallax background */
+        }
+
+        /* Content Sections */
+        section {
+            padding: 10px 20px;
+            max-width: 100%;
+            margin: 0 auto;
+            background: linear-gradient(11115deg, #ccc, #666);
+            color: #fff;
+        }
+
+        h2 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        /* Contact Section */
+        #contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 110px 220px;
+        }
+
+        .contact-form {
+            flex: 1.3;
+            min-width: 100px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 89%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            background: #ffcc00;
+            color: #333;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: #e6b800;
+        }
+
+        .google-map {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .google-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #contact {
+                padding: 20px;
+            }
+            .google-map {
+                height: 300px;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+       
+        <img src="img/logo_00_new.jpg" width="8%" alt="Sofa Logo">
+    </header>
+
+    <nav>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="menu">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a>
+                <ul class="submenu">
+                    <li><a href="#design">Design</a></li>
+                    <li><a href="#delivery">Delivery</a></li>
+                    <li><a href="#customization">Customization</a></li>
+                </ul>
+            </li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Parallax Sections -->
+    <div class="parallax" id="parallax1">
+        <h2>Stoffe che Raccontano Storie, Spazi che Diventano Casa.</h2>
+    </div>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id feugiat eros. Integer commodo sapien ut nisi efficitur, nec faucibus felis vestibulum.</p>
+    </section>
+
+    <div class="parallax" id="parallax2">
+        <h2>Our Services</h2>
+    </div>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <p>We offer a wide range of services to meet your needs. From design to delivery, we've got you covered.</p>
+    </section>
+
+    <div class="parallax" id="parallax3">
+        <h2>Our Products</h2>
+    </div>
+
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="gallery">
+            <img src="img/sofa000.webp" alt="Sofa 1" class="gallery-image">
+            <img src="img/002_sofa.webp" alt="Sofa 2" class="gallery-image">
+            <img src="img/0003_Sofa.webp" alt="Sofa 3" class="gallery-image">
+            <img src="img/sofa000.webp" alt="Sofa 4" class="gallery-image">
+            <img src="img/002_sofa.webp" alt="Sofa 5" class="gallery-image">
+            <img src="img/0003_Sofa.webp" alt="Sofa 6" class="gallery-image">
+        </div>
+    </section>
+
+    <div class="parallax" id="parallax4">
+        <h2>Our Gallery</h2>
+    </div>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <p>Explore our collection of premium handcrafted sofas and furniture pieces.</p>
+        <div class="gallery">
+            <img src="img/0006.jpg" alt="Gallery Image 1" class="gallery-image">
+            <img src="img/mono002.webp" alt="Gallery Image 2" class="gallery-image">
+            <img src="img/nomo.webp" alt="Gallery Image 3" class="gallery-image">
+            <img src="img/002_sofa.webp" alt="Gallery Image 4" class="gallery-image">
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form action="#" method="post">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+        <div class="google-map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.9537353153166!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2a5a9f4f1c8!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1625061234567!5m2!1sen!2sau"
+                allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <footer>
+        <p> O | Y | A <br>&copy; 2025 All rights reserved.</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <img src="" alt="Lightbox Image" id="lightbox-img">
+    </div>
+
+    <script>
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const galleryImages = document.querySelectorAll('.gallery-image');
+
+        // Open lightbox
+        galleryImages.forEach(image => {
+            image.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                lightboxImg.src = image.src;
+            });
+        });
+
+        // Close lightbox
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menu = document.querySelector('.menu');
+
+        mobileMenu.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+
+        // Remove scroll event listener for smaller screens
+        if (window.innerWidth <= 800) {
+            window.removeEventListener('scroll', handleScroll);
+        } else {
+            // Add scroll event listener for larger screens
+            window.addEventListener('scroll', handleScroll);
+        }
+
+        function handleScroll() {
+            const aboutSection = document.getElementById('about');
+            const nav = document.querySelector('nav');
+            const aboutSectionTop = aboutSection.offsetTop;
+
+            if (window.scrollY >= aboutSectionTop) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        }
+    </script>
+</body>
+
+</html>
