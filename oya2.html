@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hipster.io</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth; /* For smooth scrolling to anchor links */
+        }
+        
+        html,
+        body,
+        .cover{
+            height: 100%;
+        }
+        .cover{
+            background: url('img/0001_Sofa.webp') center center no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            width: 100%;
+            display: table;
+            padding: 0 20%;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: zoom 20s linear infinite; /* Added animation */
+        }
+
+        .cover-text{
+            text-align: center;
+            color: black;
+            display: table-cell;
+            vertical-align: middle;
+            animation: fadeIn 1.5s ease-in;
+        }
+        .coverpara{
+            font-weight: bolder;
+            font-style: italic;
+        }
+        .cover-text h1{
+            margin:0;
+            font-size: 70px;
+            letter-spacing: -4px;
+        }
+        nav.navbar-inverse{
+            background: rgba(0, 0, 0, 0.8);
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        nav.navbar-inverse.transparent {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .testimonial{
+            background: #222;
+            width: 100%;
+        }
+        blockquote{
+            border: none;
+            margin: 0;
+            font-family: Georgia, Times, serif;
+            font-style: italic;
+            font-size: 32px;
+            color:white;
+        }
+        blockquote cite{
+            display: block;
+            text-align: right;
+            text-transform: uppercase;
+            font-family: Helvetica,Arial,sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            color: #888;
+            margin-top: 40px;
+        }
+        section{
+            padding: 100px;
+            transition: all 0.3s ease-in-out;
+        }
+        h2{
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0 0 60px;
+        }
+        #team{
+            background: url('img/0002_Sofa.webp') center center no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            width:100%;
+            color:white;
+            text-align: center;
+            position: relative;
+        }
+        #team::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        #team .container {
+            position: relative;
+            z-index: 2;
+        }
+        h2 + p{
+            text-align: center;
+            margin-top: -50px;
+        }
+        img{
+            height: 200px;
+            width:200px;
+        }
+        footer{
+            background: #222;
+            color:white;
+            text-align: center;
+            padding: 20px;
+            font-family: Georgia,Times,sans-serif;
+        }
+        footer strong{
+            color:chocolate; 
+        }
+
+        /* Media Queries */
+        @media only screen and (max-width: 568px){
+            section{
+                padding:20px;
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .parallax {
+                background-attachment: scroll;
+            }
+        }
+
+        /* Smooth section transitions */
+        section {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Enhance hover effects */
+        .img-circle {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .img-circle:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Add these new styles at the beginning of the style section */
+        html {
+            scroll-behavior: smooth; /* For smooth scrolling to anchor links */
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: all 0.3s ease;
+        }
+
+        /* Update existing cover styles */
+        .cover {
+            background: url('img/002_sofa.webp') center center no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            width: 100%;
+            display: table;
+            padding: 0 20%;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: zoom 20s linear infinite; /* Added animation */
+        }
+
+        @keyframes zoom {
+            0% {
+                background-size: 100%;
+            }
+            100% {
+                background-size: 110%;
+            }
+        }
+
+        /* Update team section styles */
+        #team {
+            background: url('img/0002_Sofa.webp') center center no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            width: 100%;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Add overlay for better text readability */
+        #team::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        #team .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Smooth section transitions */
+        section {
+            transition: all 0.3s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Add background images to sections */
+        #about {
+            background-image: url('img/0003_Sofa.webp');
+            color: white;
+            overflow: hidden; /* Hide overflow for scrollable container */
+            position: relative;
+        }
+
+        /* About section scrollable container */
+        #about .container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 20px; /* Add some padding for the scrollbar */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+        }
+
+        #about .container::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+        }
+
+        #about .col-sm-4 {
+            flex: 0 0 auto;
+            width: 33.333%;
+            padding: 0 15px;
+            scroll-snap-align: start;
+        }
+
+        /* Arrows for scrollable container */
+        #about .scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+            user-select: none;
+        }
+
+        #about .scroll-arrow.left {
+            left: 10px;
+        }
+
+        #about .scroll-arrow.right {
+            right: 10px;
+        }
+
+        #contact {
+            background-image: url('img/0004_Sofa.webp');
+            color: white;
+            background-position: center bottom;
+        }
+
+        /* Enhance hover effects */
+        .img-circle {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .img-circle:hover {
+            transform: scale(1.05);
+        }
+
+        /* Smooth navbar transparency */
+        nav.navbar-inverse {
+            background: rgba(0, 0, 0, 0.8);
+            transition: background-color 0.3s ease;
+        }
+
+        nav.navbar-inverse.transparent {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Add animation for cover text */
+        .cover-text {
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Mobile optimization for parallax */
+        @media only screen and (max-width: 768px) {
+            .parallax {
+                background-attachment: scroll;
+            }
+        }
+        
+        /* Highlight active menu item */
+        .navbar-nav > li.active > a {
+            background-color: #f0ad4e !important;
+            color: white !important;
+        }
+
+        /* Media queries for smaller screens */
+        @media only screen and (max-width: 768px) {
+            section {
+                background-size: cover; /* Ensure background covers the section */
+                background-position: center; /* Center background */
+                padding: 50px 20px; /* Reduce padding */
+            }
+
+            .cover {
+                background-size: cover; /* Ensure cover background covers the section */
+                padding: 0 10%; /* Reduce cover padding */
+            }
+
+            .cover-text h1 {
+                font-size: 50px; /* Reduce cover heading size */
+            }
+
+            .coverpara {
+                font-size: 16px; /* Reduce cover paragraph size */
+            }
+
+            #about .col-sm-4,
+            #team .col-sm-3 {
+                width: 100%; /* Full width columns */
+                text-align: center; /* Center text */
+            }
+
+            #team img {
+                margin: 0 auto; /* Center team images */
+            }
+
+            #contact .input-group {
+                width: 100%; /* Full width input group */
+            }
+
+            #contact .input-group .form-control {
+                text-align: center; /* Center input text */
+            }
+        }
+
+        /* Style the contact form */
+        #contact form {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #contact .input-group {
+            margin-bottom: 15px;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        #contact .input-group:hover {
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        #contact .input-group-addon {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px;
+        }
+
+        #contact .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+
+        #contact .form-control:focus {
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            box-shadow: none;
+        }
+
+        #contact textarea.form-control {
+            resize: vertical;
+        }
+
+        #contact button.btn-primary {
+            background: #f0ad4e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        #contact button.btn-primary:hover {
+            background: #d99736;
+        }
+
+        /* Style the products section */
+        #products {
+            background-image: url('img/0005_Sofa.webp');
+            color: white;
+            padding: 50px 0;
+        }
+
+        #products .gallery {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 20px; /* Add some padding for the scrollbar */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+            position: relative; /* Needed for absolute positioning of arrows */
+            justify-content: center; /* Center the gallery items */
+            align-items: center; /* Align items vertically */
+        }
+
+        #products .gallery::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+        }
+
+        #products .gallery-item {
+            flex: 0 0 auto;
+            width: 200px; /* Adjust as needed */
+            padding: 0 10px;
+            scroll-snap-align: start;
+            transition: transform 0.3s ease; /* Add transition for smooth scaling */
+        }
+        
+        #products .gallery-item:hover {
+            transform: scale(1.05); /* Scale up on hover */
+        }
+
+        /* Arrows for product gallery */
+        #products .scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+            user-select: none;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        #products .scroll-arrow:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        #products .scroll-arrow.left {
+            left: 10px;
+        }
+
+        #products .scroll-arrow.right {
+            right: 10px;
+        }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            overflow: auto; /* Make lightbox scrollable */
+            padding: 20px; /* Add some padding */
+            box-sizing: border-box; /* Include padding in width/height */
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            display: block;
+            margin: 20px auto; /* Center the image horizontally and add some margin */
+            border-radius: 5px;
+        }
+
+        .lightbox .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* News section styles */
+        #news {
+            background-color: #f8f8f8;
+            padding: 50px 0;
+        }
+
+        .teasers {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            position: relative;
+            padding-bottom: 20px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            justify-content: center; /* Center the teasers */
+            align-items: center; /* Align items vertically */
+        }
+
+        .teaser {
+            flex: 0 0 auto;
+            width: 300px;
+            margin-right: 20px;
+            scroll-snap-align: start;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .teaser:hover {
+            transform: translateY(-5px);
+        }
+        
+        .teaser img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .teaser-body {
+            padding: 20px;
+        }
+        
+        .teaser-title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .teaser-text {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #f0ad4e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #d99736;
+        }
+        
+        #news .scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+            user-select: none;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        #news .scroll-arrow:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        #news .scroll-arrow.left {
+            left: 10px;
+        }
+
+        #news .scroll-arrow.right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Hipster.io</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="cover">
+        <div class="cover-text">
+            <h1>You probably haven&rsquo;t heard of us</h1>
+            <p class="lead coverpara">We're that "cool" vegan uncle who doesn't have kids and somehow
+            makes a living repairing antique polarid cameras,while drinking a $38 bottle of artisanal cold brew</p>
+            <a href="#about" role="button" class="btn btn-danger btn-lg">Let's get started i guess.</a>
+        </div>
+    </div>
+
+    <section class="testimonial">
+        <div class="container">
+            <blockquote>
+                &ldquo; I never realized how i uncool i was before.Hispter.io lovingly crafted me into shapre,complete with a skin-fade,fresh denim &amp; not only were they late,but they were overbudget.Highly recommended! &rdquo; 
+                <cite>&mdash; A happy client</cite>
+            </blockquote>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>Why Hipster.io</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h3>Artisanal</h3>
+                    <p>XOXO retro master cleanse, helvetica ugh tousled fanny pack freegan green juice banh mi woke. Photo booth wolf cray, single-origin coffee everyday carry keytar quinoa seitan messenger bag selfies small batch forage enamel pin. Mustache master cleanse vice tousled farm-to-table. Enamel pin artisan shabby chic quinoa cardigan mustache. Tumeric craft beer pork belly coloring book four dollar toast, kinfolk prism la croix put a bird on it you probably haven't heard of them tofu selvage. Plaid ennui slow-carb aesthetic wolf thundercats forage. Tumeric hell of kogi, shabby chic chia hexagon forage XOXO knausgaard organic microdosing bicycle rights listicle.</p>
+                </div>
+                <div class="col-sm-4">
+                    <h3>Plaid</h3>
+                    <p>XOXO retro master cleanse, helvetica ugh tousled fanny pack freegan green juice banh mi woke. Photo booth wolf cray, single-origin coffee everyday carry keytar quinoa seitan messenger bag selfies small batch forage enamel pin. Mustache master cleanse vice tousled farm-to-table. Enamel pin artisan shabby chic quinoa cardigan mustache. Tumeric craft beer pork belly coloring book four dollar toast, kinfolk prism la croix put a bird on it you probably haven't heard of them tofu selvage. Plaid ennui slow-carb aesthetic wolf thundercats forage. Tumeric hell of kogi, shabby chic chia hexagon forage XOXO knausgaard organic microdosing bicycle rights listicle.</p>
+                </div>
+                <div class="col-sm-4">
+                    <h3>Tumeric</h3>
+                    <p>XOXO retro master cleanse, helvetica ugh tousled fanny pack freegan green juice banh mi woke. Photo booth wolf cray, single-origin coffee everyday carry keytar quinoa seitan messenger bag selfies small batch forage enamel pin. Mustache master cleanse vice tousled farm-to-table. Enamel pin artisan shabby chic quinoa cardigan mustache. Tumeric craft beer pork belly coloring book four dollar toast, kinfolk prism la croix put a bird on it you probably haven't heard of them tofu selvage. Plaid ennui slow-carb aesthetic wolf thundercats forage. Tumeric hell of kogi, shabby chic chia hexagon forage XOXO knausgaard organic microdosing bicycle rights listicle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="container">
+            <h2>Meet Our Team</h2>
+            <div class="row">
+                <div class="col-sm-3">
+                    <img src="img/mono002.webp" alt="Member 1" class="img-circle">
+                    <h4>John Doe</h4>
+                    <p>Sapiente, alias expedita, quisquam deserunt corporis quo ut mollitia provident optio blanditiis doloremque porro dolorum a officia ullam consequuntur, at reprehenderit ducimus!</p>
+                </div>
+                <div class="col-sm-3">
+                    <img src="img/mono002.webp" alt="Member 2" class="img-circle">
+                    <h4>Billy jame</h4>
+                    <p>Sapiente, alias expedita, quisquam deserunt corporis quo ut mollitia provident optio blanditiis doloremque porro dolorum a officia ullam consequuntur, at reprehenderit ducimus!</p>
+                </div>
+                <div class="col-sm-3">
+                    <img src="img/mono002.webp" alt="Member 3" class="img-circle">
+                    <h4>Mike wayne</h4>
+                    <p>Sapiente, alias expedita, quisquam deserunt corporis quo ut mollitia provident optio blanditiis doloremque porro dolorum a officia ullam consequuntur, at reprehenderit ducimus!</p>
+                </div>
+                <div class="col-sm-3">
+                    <img src="img/mono002.webp" alt="Member 4" class="img-circle">
+                    <h4>Edward wilson</h4>
+                    <p>Sapiente, alias expedita, quisquam deserunt corporis quo ut mollitia provident optio blanditiis doloremque porro dolorum a officia ullam consequuntur, at reprehenderit ducimus!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <div class="gallery">
+            <div class="scroll-arrow left" tabindex="0">&lt;</div>
+            <div class="gallery-item" tabindex="0">
+                <img src="img/0007.jpg" alt="Product 1" data-lightbox="product-1">
+            </div>
+            <div class="gallery-item" tabindex="0">
+                <img src="img/mono0101.webp" alt="Product 2" data-lightbox="product-2">
+            </div>
+            <div class="gallery-item" tabindex="0">
+                <img src="img/nomo.webp" alt="Product 3" data-lightbox="product-3">
+            </div>
+            <div class="gallery-item" tabindex="0">
+                <img src="img/mono002.webp" alt="Product 4" data-lightbox="product-4">
+            </div>
+            <div class="gallery-item" tabindex="0">
+                <img src="img/0007.jpg" alt="Product 5" data-lightbox="product-5">
+            </div>
+            <div class="gallery-item" tabindex="0">
+                <img src="img/sofa000.webp" alt="Product 6" data-lightbox="product-6">
+            </div>
+            <div class="scroll-arrow right" tabindex="0">&gt;</div>
+        </div>
+    </section>
+
+    <section id="news">
+        <div class="teasers">
+            <div class="scroll-arrow left" tabindex="0">&lt;</div>
+            <div class="teaser" tabindex="0">
+                <img src="img/0016_Sofa.webp" alt="News 1">
+                <div class="teaser-body">
+                    <h3 class="teaser-title">News Title 1</h3>
+                    <p class="teaser-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <a href="#" class="cta-button">Read More</a>
+                </div>
+            </div>
+            <div class="teaser" tabindex="0">
+                <img src="img/0017_Sofa.webp" alt="News 2">
+                <div class="teaser-body">
+                    <h3 class="teaser-title">News Title 2</h3>
+                    <p class="teaser-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <a href="#" class="cta-button">Read More</a>
+                </div>
+            </div>
+            <div class="teaser" tabindex="0">
+                <img src="img/0018_Sofa.webp" alt="News 3">
+                <div class="teaser-body">
+                    <h3 class="teaser-title">News Title 3</h3>
+                    <p class="teaser-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <a href="#" class="cta-button">Read More</a>
+                </div>
+            </div>
+            <div class="scroll-arrow right" tabindex="0">&gt;</div>
+        </div>
+    </section>
+
+    <div class="lightbox">
+        <span class="close-lightbox" tabindex="0">&times;</span>
+        <img src="" alt="Lightbox Image">
+    </div>
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Contact Us</h2>
+                    <form>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                            <textarea class="form-control" placeholder="Message" rows="5"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                <div class="col-sm-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.998088099978!2d-0.12777779999999998!3d51.5073509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604b9e7900001%3A0x4291f3172409ea92!2sLondon%2C+UK!5e0!3m2!1sen!2sus!4v1708000000000!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        crafted with &hearts; in calary by <strong>Syed Furqan Hussain Bukhari</strong>
+    </footer>
+
+    <!-- Bootstrap JavaScript Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Add this script before the closing body tag -->
+    <script>
+        // Navbar transparency control
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar-inverse').removeClass('transparent');
+            } else {
+                $('.navbar-inverse').addClass('transparent');
+            }
+        });
+
+        // Initialize navbar as transparent
+        $('.navbar-inverse').addClass('transparent');
+
+        // Smooth scroll for anchor links
+        $(document).on('click', 'a[href^="#"]', function(event) {
+            event.preventDefault();
+            var target = $(this).attr('href');
+            if (target === '#') {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 1000, function() {
+                    updateActiveMenuItem();
+                });
+            } else {
+                $('html, body').animate({
+                    scrollTop: $(target).offset().top - 50
+                }, 1000, function() {
+                    updateActiveMenuItem();
+                });
+            }
+        });
+
+        // Basic parallax effect
+        $(window).scroll(function() {
+            var scrolled = $(window).scrollTop();
+            $('.parallax').css('background-position-y', -(scrolled * 0.3) + 'px');
+            updateActiveMenuItem();
+        });
+
+        // Function to update active menu item
+        function updateActiveMenuItem() {
+            var scrollPos = $(document).scrollTop();
+            $('section').each(function() {
+                var top = $(this).offset().top - 100;
+                var bottom = top + $(this).outerHeight();
+                if (scrollPos >= top && scrollPos <= bottom) {
+                    $('.navbar-nav > li').removeClass('active');
+                    $('a[href="#' + $(this).attr('id') + '"]').parent().addClass('active');
+                }
+            });
+            // Highlight Home when at the top
+            if (scrollPos === 0) {
+                $('.navbar-nav > li').removeClass('active');
+                $('a[href="#"]').parent().addClass('active');
+            }
+        }
+
+        // Initial active menu item update
+        updateActiveMenuItem();
+
+        // About section scroll arrows
+        $('#about .scroll-arrow.left').click(function() {
+            $('#about .container').animate({
+                scrollLeft: '-=300'
+            }, 300);
+        });
+
+        $('#about .scroll-arrow.right').click(function() {
+            $('#about .container').animate({
+                scrollLeft: '+=300'
+            }, 300);
+        });
+
+        // Close navbar on outside click for smaller screens
+        $(document).on('click', function(event) {
+            if ($(window).width() <= 768) {
+                var navbar = $('.navbar-collapse');
+                if (navbar.hasClass('in') && !$(event.target).closest('.navbar-collapse').length && !$(event.target).closest('.navbar-toggle').length) {
+                    navbar.collapse('hide');
+                }
+            }
+        });
+
+        // Lightbox functionality
+        $('#products .gallery-item').click(function() {
+            var imgSrc = $(this).find('img').attr('src');
+            $('.lightbox img').attr('src', imgSrc);
+            $('.lightbox').fadeIn();
+        });
+
+        $('.close-lightbox').click(function() {
+            $('.lightbox').fadeOut();
+        });
+
+        $('.lightbox').click(function(event) {
+            if (event.target === this) {
+                $('.lightbox').fadeOut();
+            }
+        });
+        
+        // Accessibility: Handle keydown events for gallery items and close button
+        $('#products .gallery-item').keydown(function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                $(this).click();
+            }
+        });
+        
+        $('.close-lightbox').keydown(function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                $(this).click();
+            }
+        });
+        
+        // Product gallery scroll arrows
+        $('#products .scroll-arrow.left').click(function() {
+            $('#products .gallery').animate({
+                scrollLeft: '-=200'
+            }, 300);
+        });
+
+        $('#products .scroll-arrow.right').click(function() {
+            $('#products .gallery').animate({
+                scrollLeft: '+=200'
+            }, 300);
+        });
+        
+        // News section scroll arrows
+        $('#news .scroll-arrow.left').click(function() {
+            $('#news .teasers').animate({
+                scrollTop: '-=200'
+            }, 300);
+        });
+
+        $('#news .scroll-arrow.right').click(function() {
+            $('#news .teasers').animate({
+                scrollTop: '+=200'
+            }, 300);
+        });
+    </script>
+</body>
+</html>
